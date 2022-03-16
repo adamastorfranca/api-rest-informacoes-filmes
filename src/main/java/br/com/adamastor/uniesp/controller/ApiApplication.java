@@ -1,4 +1,4 @@
-package br.com.adamastor.uniesp;
+package br.com.adamastor.uniesp.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
