@@ -1,15 +1,13 @@
-package br.com.adamastor.uniesp.controller;
+package br.com.adamastor.filme;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiApplication {
-	
+public class FilmeApplication {
+
 	public static void main(String[] args) {
-		
-		SpringApplication.run(ApiApplication.class, args);
-		
+		SpringApplication.run(FilmeApplication.class, args);
 	}
 
 }
