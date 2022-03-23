@@ -10,14 +10,10 @@ public class FilmeDTO {
 	
 	private Long id;
 	private String titulo;
-	private String sinopse;
-	private String urlTrailler;
 	
 	public FilmeDTO(Filme filme) {
 		this.id = filme.getId();
 		this.titulo = filme.getTitulo();
-		this.sinopse = filme.getSinopse();
-		this.urlTrailler = filme.getUrlTrailler();
 	}
 
 	public Long getId() {
@@ -26,14 +22,6 @@ public class FilmeDTO {
 
 	public String getTitulo() {
 		return titulo;
-	}
-
-	public String getSinopse() {
-		return sinopse;
-	}
-
-	public String getUrlTrailler() {
-		return urlTrailler;
 	}
 
 	public static List<FilmeDTO> converter(List<Filme> filmes){
