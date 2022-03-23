@@ -1,13 +1,13 @@
-package br.com.adamastor.filme;
+package br.com.adamastor.uniespflix;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FilmeApplication {
+public class UniespflixApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FilmeApplication.class, args);
+		SpringApplication.run(UniespflixApplication.class, args);
 	}
 
 }

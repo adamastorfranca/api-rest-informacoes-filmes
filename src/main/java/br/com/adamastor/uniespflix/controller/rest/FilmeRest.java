@@ -1,6 +1,5 @@
-package br.com.adamastor.filme.controller.rest;
+package br.com.adamastor.uniespflix.controller.rest;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,12 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.adamastor.filme.model.dto.FilmeDTO;
-import br.com.adamastor.filme.model.form.AtualizacaoFilmeForm;
-import br.com.adamastor.filme.model.form.FilmeForm;
-import br.com.adamastor.filme.model.service.FilmeService;
+import br.com.adamastor.uniespflix.model.dto.FilmeDTO;
+import br.com.adamastor.uniespflix.model.form.AtualizacaoFilmeForm;
+import br.com.adamastor.uniespflix.model.form.FilmeForm;
+import br.com.adamastor.uniespflix.model.service.FilmeService;
 
 @RestController
 @RequestMapping("/rest/filmes")
@@ -60,11 +58,13 @@ public class FilmeRest {
 	}
 	
 	@PostMapping(value = "/cadastrar", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<FilmeDTO> cadastrar(@RequestBody @Valid FilmeForm form, UriComponentsBuilder uriBuilder) {
+	public @ResponseBody ResponseEntity<FilmeDTO> cadastrar(@RequestBody @Valid FilmeForm form) {
 		FilmeDTO dto = filmeService.cadastrar(form);
 		
-		URI uri = uriBuilder.path("rest/filmes/{id}").buildAndExpand(dto.getId()).toUri();
-		return ResponseEntity.created(uri).body(dto); 
+		if (dto == null) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 	
 	@PutMapping(value = "/atualizar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,18 +1,16 @@
-package br.com.adamastor.filme.model.service;
+package br.com.adamastor.uniespflix.model.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.adamastor.filme.model.dto.FilmeDTO;
-import br.com.adamastor.filme.model.entity.Filme;
-import br.com.adamastor.filme.model.form.AtualizacaoFilmeForm;
-import br.com.adamastor.filme.model.form.FilmeForm;
-import br.com.adamastor.filme.model.repository.FilmeRepository;
+import br.com.adamastor.uniespflix.model.dto.FilmeDTO;
+import br.com.adamastor.uniespflix.model.entity.Filme;
+import br.com.adamastor.uniespflix.model.form.AtualizacaoFilmeForm;
+import br.com.adamastor.uniespflix.model.form.FilmeForm;
+import br.com.adamastor.uniespflix.model.repository.FilmeRepository;
 
 @Service
 public class FilmeService {
@@ -38,13 +36,13 @@ public class FilmeService {
 		return null;
 	}
 
-	public FilmeDTO cadastrar(@Valid FilmeForm form) {
+	public FilmeDTO cadastrar(FilmeForm form) {
 		Filme filme = form.converter();
 		filmeRepository.save(filme);
 		return new FilmeDTO(filme);
 	}
 
-	public FilmeDTO atualizar(Long id, @Valid AtualizacaoFilmeForm form) {
+	public FilmeDTO atualizar(Long id, AtualizacaoFilmeForm form) {
 		Filme filme = form.converter();
 		filmeRepository.save(filme);
 		return new FilmeDTO(filme);

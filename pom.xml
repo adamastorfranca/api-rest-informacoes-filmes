@@ -8,10 +8,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.adamastor</groupId>
-	<artifactId>filme</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>filme</name>
-	<description>Demo project for Spring Boot</description>
+	<artifactId>uniespflix</artifactId>
+	<version>1.0.0</version>
+	<name>UNIESPflix</name>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
