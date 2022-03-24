@@ -20,8 +20,8 @@ public class Plano {
 	private String descricao;
 	private String resolucao;
 	private BigDecimal valor;
-	@OneToMany
-	private List<Usuario> usuarios = new ArrayList<>();
+	@OneToMany(mappedBy = "plano") 
+	private List<Usuario> usuario = new ArrayList<>();
 	
 	public Long getId() {
 		return id;
@@ -63,12 +63,12 @@ public class Plano {
 		this.valor = valor;
 	}
 	
-	public List<Usuario> getUsuarios() {
-		return usuarios;
+	public List<Usuario> getUsuario() {
+		return usuario;
 	}
 	
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setUsuario(List<Usuario> usuario) {
+		this.usuario = usuario;
 	}
 
 	

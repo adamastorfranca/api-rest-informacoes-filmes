@@ -1,7 +1,5 @@
 package br.com.adamastor.uniespflix.model.entity;
 
-import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +12,7 @@ public class Cartao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	private String numero;
+	private String numeroCartao;
 	private String validade;
 	private String codigoSeguranca;
 	private String nomeTitular;
@@ -25,24 +23,20 @@ public class Cartao {
 	public Cartao() {
 	}
 	
-	public Cartao(String numero, String validade, String codigoSegurancao, String nomeTitular, String cpfCnpj) {
-		this.numero = numero;
+	public Cartao(String numeroCartao, String validade, String codigoSegurancao, String nomeTitular, String cpfCnpj) {
+		this.numeroCartao = numeroCartao;
 		this.validade = validade;
 		this.codigoSeguranca = codigoSegurancao;
 		this.nomeTitular = nomeTitular;
 		this.cpfCnpj = cpfCnpj;
 	}
 
-	public Long getId() {
-		return Id;
+	public String getNumeroCartao() {
+		return numeroCartao;
 	}
 
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNumeroCartao(String numeroCartao) {
+		this.numeroCartao = numeroCartao;
 	}
 
 	public String getValidade() {
@@ -57,7 +51,7 @@ public class Cartao {
 		return codigoSeguranca;
 	}
 
-	public void setCodigoSegurancao(String codigoSeguranca) {
+	public void setCodigoSeguranca(String codigoSeguranca) {
 		this.codigoSeguranca = codigoSeguranca;
 	}
 
@@ -77,4 +71,15 @@ public class Cartao {
 		this.cpfCnpj = cpfCnpj;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Long getId() {
+		return Id;
+	}
 }

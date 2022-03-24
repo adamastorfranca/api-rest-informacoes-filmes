@@ -9,6 +9,7 @@ import br.com.adamastor.uniespflix.model.entity.Plano;
 public interface PlanoRepository extends CrudRepository<Plano, Long>{
 	
 	List<Plano> findAll();
+	Plano findByNome(String nome);
 	
 
 }

@@ -20,6 +20,4 @@ public class PlanoService {
 		planos.remove(planos.get(3));
 		return PlanoDTO.converter(planos);
 	}
-
-
 }
