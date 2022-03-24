@@ -41,14 +41,14 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.GET, "/rest/planos").permitAll()
-		.antMatchers(HttpMethod.POST, "/rest/usuarios/cadastrar").permitAll()
+		.antMatchers("/rest/**").permitAll()
+		//.antMatchers(HttpMethod.GET, "/rest/planos").permitAll()
+		//.antMatchers(HttpMethod.POST, "/rest/usuarios").permitAll()
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
-
 	}
 	
 	@Override

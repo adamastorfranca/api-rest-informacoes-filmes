@@ -40,7 +40,7 @@ public class UsuarioRest {
 		UsuarioDTO dto = usuarioService.cadastrar(form);
 		
 		if (dto == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}

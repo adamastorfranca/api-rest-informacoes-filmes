@@ -10,9 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -32,11 +30,10 @@ public class Usuario implements UserDetails{
 	private String numeroTelefone;
 	@OneToOne
 	private Cartao cartao;	
-	@ManyToOne
-	@JoinColumn(name = "plano_id", nullable = false)
-	private Plano plano;
+	@OneToOne
+	private Favorito favorito;
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Perfil> perfis = new ArrayList<>();
+	private List<Plano> plano = new ArrayList<>();
 	
 	public Usuario() {
 	}
@@ -48,6 +45,11 @@ public class Usuario implements UserDetails{
 		this.email = email;
 		this.senha = senha;
 		this.numeroTelefone = numeroTelefone;
+	}
+	
+	public void adicionarPlano(Plano plano) {
+		this.plano.add(plano);
+		
 	}
 
 	public Long getId() {
@@ -105,21 +107,17 @@ public class Usuario implements UserDetails{
 	public void setCartao(Cartao cartao) {
 		this.cartao = cartao;
 	}
-	
-	public Plano getPlano() {
-		return plano;
+
+	public Favorito getFavorito() {
+		return favorito;
 	}
 	
-	public void setPlano(Plano plano) {
-		this.plano = plano;
-	}
-	
-	public List<Perfil> getPerfis() {
-		return perfis;
+	public void setFavorito(Favorito favorito) {
+		this.favorito = favorito;
 	}
 
-	public void setPerfis(List<Perfil> perfis) {
-		this.perfis = perfis;
+	public List<Plano> getPlano() {
+		return plano;
 	}
 
 	@Override
@@ -149,7 +147,7 @@ public class Usuario implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.perfis;
+		return this.plano;
 	}
 
 	@Override

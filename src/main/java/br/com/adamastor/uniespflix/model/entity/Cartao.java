@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Cartao {
@@ -17,8 +16,6 @@ public class Cartao {
 	private String codigoSeguranca;
 	private String nomeTitular;
 	private String cpfCnpj;
-	@ManyToOne
-	private Usuario usuario;
 	
 	public Cartao() {
 	}
@@ -69,14 +66,6 @@ public class Cartao {
 
 	public void setCpfCnpj(String cpfCnpj) {
 		this.cpfCnpj = cpfCnpj;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public Long getId() {

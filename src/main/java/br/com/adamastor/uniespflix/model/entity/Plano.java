@@ -1,17 +1,17 @@
 package br.com.adamastor.uniespflix.model.entity;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-public class Plano {
+public class Plano implements GrantedAuthority{
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,6 @@ public class Plano {
 	private String descricao;
 	private String resolucao;
 	private BigDecimal valor;
-	@OneToMany(mappedBy = "plano") 
-	private List<Usuario> usuario = new ArrayList<>();
 	
 	public Long getId() {
 		return id;
@@ -63,12 +61,9 @@ public class Plano {
 		this.valor = valor;
 	}
 	
-	public List<Usuario> getUsuario() {
-		return usuario;
-	}
-	
-	public void setUsuario(List<Usuario> usuario) {
-		this.usuario = usuario;
+	@Override
+	public String getAuthority() {
+		return this.nome;
 	}
 
 	

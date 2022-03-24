@@ -12,11 +12,12 @@ public class Filme {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
+	private String genero;
 	private Integer anoLancamento;
 	private Integer duracaoMinutos;
 	private String sinopse;
-	private String urlTrailler;
-	private String genero;
+	private Integer relevancia;
+	private String urlTrailler;	
 	
 	public Filme() {
 	}
