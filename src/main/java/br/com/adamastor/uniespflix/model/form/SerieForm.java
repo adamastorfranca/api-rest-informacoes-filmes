@@ -3,18 +3,18 @@ package br.com.adamastor.uniespflix.model.form;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import br.com.adamastor.uniespflix.model.entity.Filme;
+import br.com.adamastor.uniespflix.model.entity.Serie;
 import lombok.Data;
 
 @Data
-public class FilmeForm {
+public class SerieForm {
 	
 	@NotEmpty @NotNull
 	private String titulo;
 	@NotEmpty @NotNull
 	private Integer anoLancamento;
 	@NotEmpty @NotNull
-	private Integer duracaoMinutos;
+	private Integer temporadas;
 	@NotEmpty @NotNull
 	private String sinopse;
 	@NotEmpty @NotNull
@@ -22,13 +22,13 @@ public class FilmeForm {
 	@NotEmpty @NotNull
 	private String nomeGenero;
 
-	public Filme converter() {
-		Filme filme = new Filme();
-		filme.setTitulo(titulo);
-		filme.setAnoLancamento(anoLancamento);
-		filme.setDuracaoMinutos(duracaoMinutos);
-		filme.setSinopse(sinopse);
-		filme.setUrlTrailler(urlTrailler);
-		return filme;
+	public Serie converter() {
+		Serie serie = new Serie();
+		serie.setTitulo(titulo);
+		serie.setAnoLancamento(anoLancamento);
+		serie.setDuracaoMinutos(duracaoMinutos);
+		serie.setSinopse(sinopse);
+		serie.setUrlTrailler(urlTrailler);
+		return serie;
 	}
 }

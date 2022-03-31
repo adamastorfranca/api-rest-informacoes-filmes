@@ -4,8 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import lombok.Data;
 
 @Entity
+@Data
 public class Serie {
 	
 	@Id
@@ -15,7 +19,9 @@ public class Serie {
 	private Integer anoLancamento;
 	private Integer temporadas;
 	private String sinopse;
+	private Integer relevancia;
 	private String urlTrailler;
-	private String genero;
+	@OneToMany
+	private Genero genero;
 
 }

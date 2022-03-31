@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.adamastor.uniespflix.model.entity.Filme;
+import lombok.Data;
 
+@Data
 public class FilmeDTO {
 	
 	private String titulo;
@@ -12,7 +14,7 @@ public class FilmeDTO {
 	private Integer duracaoMinutos;
 	private String sinopse;
 	private String urlTrailler;
-	private String genero;
+	private String nomeGenero;
 	
 	public FilmeDTO(Filme filme) {
 		this.titulo = filme.getTitulo();
@@ -20,31 +22,7 @@ public class FilmeDTO {
 		this.duracaoMinutos = filme.getDuracaoMinutos();
 		this.sinopse = filme.getSinopse();
 		this.urlTrailler = filme.getUrlTrailler();
-		this.genero = filme.getGenero();
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public Integer getAnoLancamento() {
-		return anoLancamento;
-	}
-
-	public Integer getDuracaoMinutos() {
-		return duracaoMinutos;
-	}
-
-	public String getSinopse() {
-		return sinopse;
-	}
-
-	public String getUrlTrailler() {
-		return urlTrailler;
-	}
-
-	public String getGenero() {
-		return genero;
+		this.nomeGenero = filme.getGenero().getNome();
 	}
 
 	public static List<FilmeDTO> converter(List<Filme> filmes){

@@ -5,7 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class Cartao {
 	
 	@Id
@@ -17,8 +20,7 @@ public class Cartao {
 	private String nomeTitular;
 	private String cpfCnpj;
 	
-	public Cartao() {
-	}
+	public Cartao() {}
 	
 	public Cartao(String numeroCartao, String validade, String codigoSegurancao, String nomeTitular, String cpfCnpj) {
 		this.numeroCartao = numeroCartao;
@@ -26,49 +28,5 @@ public class Cartao {
 		this.codigoSeguranca = codigoSegurancao;
 		this.nomeTitular = nomeTitular;
 		this.cpfCnpj = cpfCnpj;
-	}
-
-	public String getNumeroCartao() {
-		return numeroCartao;
-	}
-
-	public void setNumeroCartao(String numeroCartao) {
-		this.numeroCartao = numeroCartao;
-	}
-
-	public String getValidade() {
-		return validade;
-	}
-
-	public void setValidade(String validade) {
-		this.validade = validade;
-	}
-
-	public String getCodigoSeguranca() {
-		return codigoSeguranca;
-	}
-
-	public void setCodigoSeguranca(String codigoSeguranca) {
-		this.codigoSeguranca = codigoSeguranca;
-	}
-
-	public String getNomeTitular() {
-		return nomeTitular;
-	}
-
-	public void setNomeTitular(String nomeTitular) {
-		this.nomeTitular = nomeTitular;
-	}
-
-	public String getCpfCnpj() {
-		return cpfCnpj;
-	}
-
-	public void setCpfCnpj(String cpfCnpj) {
-		this.cpfCnpj = cpfCnpj;
-	}
-
-	public Long getId() {
-		return Id;
 	}
 }

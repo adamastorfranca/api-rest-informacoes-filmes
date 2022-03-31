@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.adamastor.uniespflix.model.dto.FilmeDTO;
-import br.com.adamastor.uniespflix.model.form.AtualizacaoFilmeForm;
+import br.com.adamastor.uniespflix.model.form.AtualizacaoSerieForm;
 import br.com.adamastor.uniespflix.model.form.FilmeForm;
 import br.com.adamastor.uniespflix.model.service.FilmeService;
 
@@ -62,26 +62,24 @@ public class FilmeRest {
 		FilmeDTO dto = filmeService.cadastrar(form);
 		
 		if (dto == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 	
 	@PutMapping(value = "/atualizar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<FilmeDTO> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoFilmeForm form) {
+	public @ResponseBody ResponseEntity<FilmeDTO> atualizar(@PathVariable Long id, @RequestBody AtualizacaoSerieForm form) {
 		FilmeDTO dto = filmeService.atualizar(id, form);
 
 		if (dto == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = "/deletar/{id}")
-	public ResponseEntity<?> deletar(@PathVariable Long id) {
-		boolean resultado = filmeService.deletar(id);
-		
-		if (resultado == false) {
+	public ResponseEntity<Void> deletar(@PathVariable Long id) {
+		if (!filmeService.deletar(id)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(HttpStatus.OK);	

@@ -1,39 +1,39 @@
 package br.com.adamastor.uniespflix.model.form;
 
-import br.com.adamastor.uniespflix.model.entity.Filme;
+import br.com.adamastor.uniespflix.model.entity.Serie;
 import lombok.Data;
 
 @Data
-public class AtualizacaoFilmeForm {
+public class AtualizacaoSerieForm {
 
 	private String titulo;
 	private String nomeGenero;
 	private Integer anoLancamento;
-	private Integer duracaoMinutos;
+	private Integer temporadas;
 	private String sinopse;
 	private Integer relevancia;
 	private String urlTrailler;	
 	
-	public Filme atualizarDados(Filme filme) {
+	public Serie atualizarDados(Serie serie) {
 		if(!titulo.isEmpty()) {
-			filme.setTitulo(titulo);
+			serie.setTitulo(titulo);
 		}
 		if(anoLancamento != null || (anoLancamento >= 1900 && anoLancamento <= 2022)) {
-			filme.setAnoLancamento(anoLancamento);
+			serie.setAnoLancamento(anoLancamento);
 		}
-		if(duracaoMinutos != null || (duracaoMinutos >= 30 && duracaoMinutos <= 180)) {
-			filme.setDuracaoMinutos(duracaoMinutos);
+		if(temporadas != null || temporadas < 0) {
+			serie.setTemporadas(temporadas);;
 		}
 		if(sinopse.isEmpty()) {
-			filme.setSinopse(sinopse);
+			serie.setSinopse(sinopse);
 		}
 		if(relevancia != null || (relevancia >= 0 && relevancia <= 100)) {
-			filme.setRelevancia(relevancia);
+			serie.setRelevancia(relevancia);
 		}
 		if(!urlTrailler.isEmpty()) {
-			filme.setUrlTrailler(urlTrailler);
+			serie.setUrlTrailler(urlTrailler);
 		}
-		return filme;
+		return serie;
 	}
 
 }

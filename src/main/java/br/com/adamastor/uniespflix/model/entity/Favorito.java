@@ -9,7 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class Favorito {
 	
 	@Id
@@ -35,20 +38,4 @@ public class Favorito {
 	public void removerSerie(Serie serie) {
 		series.remove(serie);
 	}
-	
-	
-	public Long getId() {
-		return id;
-	}
-	
-	public List<Filme> getFilmes() {
-		return filmes;
-	}
-	
-	public List<Serie> getSeries() {
-		return series;
-	}
-
-	
-	
 }
