@@ -20,7 +20,6 @@ public class UsuarioDTO {
 		this.nomeCompleto = usuario.getNomeCompleto();
 		this.dataNascimento =usuario.getDataNascimento();
 		this.email = usuario.getEmail();
-//		this.nomePlano = usuario.getPlano().getNome();
 		this.numeroTelefone = usuario.getNumeroTelefone();
 	}
 	

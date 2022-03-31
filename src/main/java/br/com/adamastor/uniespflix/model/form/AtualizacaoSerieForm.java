@@ -22,7 +22,7 @@ public class AtualizacaoSerieForm {
 			serie.setAnoLancamento(anoLancamento);
 		}
 		if(temporadas != null || temporadas < 0) {
-			serie.setTemporadas(temporadas);;
+			serie.setTemporadas(temporadas);
 		}
 		if(sinopse.isEmpty()) {
 			serie.setSinopse(sinopse);

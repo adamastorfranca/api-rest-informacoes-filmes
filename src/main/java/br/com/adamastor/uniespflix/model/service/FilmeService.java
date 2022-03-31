@@ -12,7 +12,7 @@ import br.com.adamastor.uniespflix.exception.ExceptionValidacoes;
 import br.com.adamastor.uniespflix.model.dto.FilmeDTO;
 import br.com.adamastor.uniespflix.model.entity.Filme;
 import br.com.adamastor.uniespflix.model.entity.Genero;
-import br.com.adamastor.uniespflix.model.form.AtualizacaoSerieForm;
+import br.com.adamastor.uniespflix.model.form.AtualizacaoFilmeForm;
 import br.com.adamastor.uniespflix.model.form.FilmeForm;
 import br.com.adamastor.uniespflix.model.repository.FilmeRepository;
 import br.com.adamastor.uniespflix.model.repository.GeneroRepository;
@@ -74,7 +74,7 @@ public class FilmeService {
 		throw new AplicacaoException(ExceptionValidacoes.ERRO_FILME_NAO_ENCONTRADO);
 	}
 
-	public FilmeDTO atualizar(Long id, AtualizacaoSerieForm form) {
+	public FilmeDTO atualizar(Long id, AtualizacaoFilmeForm form) {
 		Optional<Filme> resultado = filmeRepository.findById(id);
 		if(resultado.isPresent()) {
 			Filme filme = resultado.get();	

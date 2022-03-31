@@ -26,7 +26,7 @@ public class SerieForm {
 		Serie serie = new Serie();
 		serie.setTitulo(titulo);
 		serie.setAnoLancamento(anoLancamento);
-		serie.setDuracaoMinutos(duracaoMinutos);
+		serie.setTemporadas(temporadas);
 		serie.setSinopse(sinopse);
 		serie.setUrlTrailler(urlTrailler);
 		return serie;

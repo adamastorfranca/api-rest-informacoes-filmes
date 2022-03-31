@@ -45,6 +45,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 		//.antMatchers(HttpMethod.GET, "/rest/planos").permitAll()
 		//.antMatchers(HttpMethod.POST, "/rest/usuarios").permitAll()
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
+		.antMatchers("/swagger-ui/**").permitAll()
+		.antMatchers("/swagger-resources/**").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -53,6 +55,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**");
 	}
 
 }

@@ -9,9 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.adamastor.uniespflix.exception.AplicacaoException;
 import br.com.adamastor.uniespflix.exception.ExceptionValidacoes;
-import br.com.adamastor.uniespflix.model.dto.FilmeDTO;
 import br.com.adamastor.uniespflix.model.dto.SerieDTO;
-import br.com.adamastor.uniespflix.model.entity.Filme;
 import br.com.adamastor.uniespflix.model.entity.Genero;
 import br.com.adamastor.uniespflix.model.entity.Serie;
 import br.com.adamastor.uniespflix.model.form.AtualizacaoSerieForm;
@@ -27,7 +25,7 @@ public class SerieService {
 	@Autowired
 	private GeneroRepository generoRepository;
 	
-	public List<SerieDTO> buscarTodosFilmes(){
+	public List<SerieDTO> buscarTodasSeries(){
 		List<Serie> series = serieRepository.findAll();
 		return SerieDTO.converter(series);
 	}
@@ -76,7 +74,7 @@ public class SerieService {
 		throw new AplicacaoException(ExceptionValidacoes.ERRO_SERIE_NAO_ENCONTRADA);
 	}
 	
-	public SerieDTO atualizar(Long id, AtualizacaoFilmeForm form) {
+	public SerieDTO atualizar(Long id, AtualizacaoSerieForm form) {
 		Optional<Serie> resultado = serieRepository.findById(id);
 		if(resultado.isPresent()) {
 			Serie serie = resultado.get();	

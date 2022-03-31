@@ -18,21 +18,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.adamastor.uniespflix.model.dto.FilmeDTO;
-import br.com.adamastor.uniespflix.model.form.AtualizacaoFilmeForm;
-import br.com.adamastor.uniespflix.model.form.FilmeForm;
-import br.com.adamastor.uniespflix.model.service.FilmeService;
+import br.com.adamastor.uniespflix.model.dto.SerieDTO;
+import br.com.adamastor.uniespflix.model.form.AtualizacaoSerieForm;
+import br.com.adamastor.uniespflix.model.form.SerieForm;
+import br.com.adamastor.uniespflix.model.service.SerieService;
 
 @RestController
-@RequestMapping("/rest/filmes")
-public class FilmeRest {
+@RequestMapping("/rest/series")
+public class SerieRest {
 	
 	@Autowired
-	private FilmeService filmeService;
+	private SerieService serieService;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<List<FilmeDTO>> listarTodosFilmes(){
-		List<FilmeDTO> dto = filmeService.buscarTodosFilmes();
+	public @ResponseBody ResponseEntity<List<SerieDTO>> listarTodasSeries(){
+		List<SerieDTO> dto = serieService.buscarTodasSeries();
 		if (dto == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
@@ -40,8 +40,8 @@ public class FilmeRest {
 	}
 	
 	@GetMapping(value = "/buscarPorTitulo/{titulo}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<List<FilmeDTO>> buscarFilmePorTitulo(@PathVariable String titulo){
-		List<FilmeDTO> dto = filmeService.buscarPorTitulo(titulo);
+	public @ResponseBody ResponseEntity<List<SerieDTO>> buscarSeriePorTitulo(@PathVariable String titulo){
+		List<SerieDTO> dto = serieService.buscarPorTitulo(titulo);
 		if (dto == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
@@ -49,8 +49,8 @@ public class FilmeRest {
 	}
 	
 	@GetMapping(value = "/buscarPorId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<FilmeDTO> buscarFilmePorId(@PathVariable Long id){
-		FilmeDTO dto = filmeService.buscarPorId(id);
+	public @ResponseBody ResponseEntity<SerieDTO> buscarSeriePorId(@PathVariable Long id){
+		SerieDTO dto = serieService.buscarPorId(id);
 		if (dto == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
@@ -58,8 +58,8 @@ public class FilmeRest {
 	}
 	
 	@PostMapping(value = "/cadastrar", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<FilmeDTO> cadastrar(@RequestBody @Valid FilmeForm form) {
-		FilmeDTO dto = filmeService.cadastrar(form);
+	public @ResponseBody ResponseEntity<SerieDTO> cadastrar(@RequestBody @Valid SerieForm form) {
+		SerieDTO dto = serieService.cadastrar(form);
 		
 		if (dto == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -68,8 +68,8 @@ public class FilmeRest {
 	}
 	
 	@PutMapping(value = "/atualizar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<FilmeDTO> atualizar(@PathVariable Long id, @RequestBody AtualizacaoFilmeForm form) {
-		FilmeDTO dto = filmeService.atualizar(id, form);
+	public @ResponseBody ResponseEntity<SerieDTO> atualizar(@PathVariable Long id, @RequestBody AtualizacaoSerieForm form) {
+		SerieDTO dto = serieService.atualizar(id, form);
 
 		if (dto == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -79,7 +79,7 @@ public class FilmeRest {
 	
 	@DeleteMapping(value = "/deletar/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable Long id) {
-		if (!filmeService.deletar(id)) {
+		if (!serieService.deletar(id)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(HttpStatus.OK);	

@@ -67,7 +67,7 @@ public class UsuarioForm {
 	}
 
 	public Usuario converter() {
-		String senhaHash = new BCryptPasswordEncoder().encode(senha).toString();
+		String senhaHash = new BCryptPasswordEncoder().encode(senha);
 		return new Usuario(nomeCompleto, LocalDate.parse(dataNascimento, formatter), email,  senhaHash, numeroTelefone);
 	}
 

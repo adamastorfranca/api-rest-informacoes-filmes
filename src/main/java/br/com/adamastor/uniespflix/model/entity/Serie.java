@@ -4,7 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -21,7 +22,8 @@ public class Serie {
 	private String sinopse;
 	private Integer relevancia;
 	private String urlTrailler;
-	@OneToMany
+	@OneToOne
+	@JoinColumn(name = "genero_id")
 	private Genero genero;
 
 }
