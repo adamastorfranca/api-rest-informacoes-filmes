@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.adamastor.uniespflix.model.entity.Usuario;
+import lombok.Data;
 
+@Data
 public class UsuarioDTO {
 	
 	private Long id;
@@ -21,32 +23,9 @@ public class UsuarioDTO {
 		this.dataNascimento =usuario.getDataNascimento();
 		this.email = usuario.getEmail();
 		this.numeroTelefone = usuario.getNumeroTelefone();
+		this.nomePlano = usuario.getPlano().get(0).getNome();
 	}
 	
-	public Long getId() {
-		return id;
-	}
-
-	public String getNomeCompleto() {
-		return nomeCompleto;
-	}
-
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getNumeroTelefone() {
-		return numeroTelefone;
-	}
-
-	public String getNomePlano() {
-		return nomePlano;
-	}
-
 	public static List<UsuarioDTO> converter(List<Usuario> usuarios){
 		return usuarios.stream().map(UsuarioDTO::new).collect(Collectors.toList());
 	}
