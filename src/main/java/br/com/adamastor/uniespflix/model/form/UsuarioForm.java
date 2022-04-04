@@ -1,74 +1,57 @@
 package br.com.adamastor.uniespflix.model.form;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.adamastor.uniespflix.model.entity.Usuario;
+import lombok.Data;
 
+@Data
 public class UsuarioForm {
 
+	@NotEmpty @NotNull
 	private String nomeCompleto;
+	@NotEmpty @NotNull
+	private String dataNascimento;
+	@NotEmpty @NotNull @Email
 	private String email;
-	private String dataNascimento;	
-	private String numeroTelefone;
-	private String nomePlano;
-	private String numeroCartao;
-	private String validade;
-	private String codigoSeguranca;
-	private String nomeTitular;
-	private String cpfCnpj;	
+	@NotEmpty @NotNull @Size(min = 8)
 	private String senha;
-	private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	
-	public String getNomeCompleto() {
-		return nomeCompleto;
-	}
+	@NotEmpty @NotNull
+	private String senhaConfirmar;
+	@NotEmpty @NotNull
+	private String numeroTelefone;
+	@NotEmpty @NotNull
+	private String nomePlano;
+	@NotEmpty @NotNull
+	private String numeroCartao;
+	@NotEmpty @NotNull
+	private String validade;
+	@NotEmpty @NotNull
+	private String codigoSeguranca;
+	@NotEmpty @NotNull
+	private String nomeTitular;
+	@NotEmpty @NotNull @CPF
+	private String cpf;		
 
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public String getNumeroTelefone() {
-		return numeroTelefone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public String getNomePlano() {
-		return nomePlano;
-	}
-
-	public String getNumeroCartao() {
-		return numeroCartao;
-	}
-
-	public String getValidade() {
-		return validade;
-	}
-
-	public String getCodigoSeguranca() {
-		return codigoSeguranca;
-	}
-
-	public String getNomeTitular() {
-		return nomeTitular;
-	}
-
-	public String getCpfCnpj() {
-		return cpfCnpj;
+	public LocalDate dataValidade() {
+		String[] separarData = validade.split("/");
+		String mes = separarData[0];
+		String ano = separarData[1];
+		return LocalDate.of(Integer.parseInt("20" + ano), Integer.parseInt(mes),Month.of(Integer.parseInt(mes)).maxLength());
 	}
 
 	public Usuario converter() {
-		String senhaHash = new BCryptPasswordEncoder().encode(senha);
-		return new Usuario(nomeCompleto, LocalDate.parse(dataNascimento, formatter), email,  senhaHash, numeroTelefone);
+//		String senhaHash = new BCryptPasswordEncoder().encode(senha);
+		return new Usuario(nomeCompleto, LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")), email,  senha, numeroTelefone);
 	}
 
 }

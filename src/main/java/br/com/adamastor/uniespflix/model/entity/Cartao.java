@@ -1,5 +1,7 @@
 package br.com.adamastor.uniespflix.model.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,18 +17,18 @@ public class Cartao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String numeroCartao;
-	private String validade;
+	private LocalDate validade;
 	private String codigoSeguranca;
 	private String nomeTitular;
-	private String cpfCnpj;
+	private String cpf;
 	
 	public Cartao() {}
 	
-	public Cartao(String numeroCartao, String validade, String codigoSegurancao, String nomeTitular, String cpfCnpj) {
+	public Cartao(String numeroCartao, LocalDate validade, String codigoSegurancao, String nomeTitular, String cpf) {
 		this.numeroCartao = numeroCartao;
 		this.validade = validade;
 		this.codigoSeguranca = codigoSegurancao;
 		this.nomeTitular = nomeTitular;
-		this.cpfCnpj = cpfCnpj;
+		this.cpf = cpf;
 	}
 }

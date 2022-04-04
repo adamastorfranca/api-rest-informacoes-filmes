@@ -5,7 +5,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import br.com.adamastor.uniespflix.exception.AplicacaoException;
+import br.com.adamastor.uniespflix.exception.ExceptionValidacoes;
 import br.com.adamastor.uniespflix.model.dto.UsuarioDTO;
 import br.com.adamastor.uniespflix.model.entity.Cartao;
 import br.com.adamastor.uniespflix.model.entity.Favorito;
@@ -33,21 +36,30 @@ public class UsuarioService {
 		return UsuarioDTO.converter(usuarioRepository.findAll());
 	}
 	
+	@Transactional(rollbackFor = Exception.class)
 	public UsuarioDTO cadastrar(UsuarioForm form) {
 		Optional<Usuario> resultado = usuarioRepository.findByEmail(form.getEmail());
 		if(resultado.isPresent()){
-			return null;
+			throw new AplicacaoException(ExceptionValidacoes.ERRO_EMAIL_JA_CADASTRADO);
 		}
+		if(!form.getSenha().equals(form.getSenhaConfirmar())) {
+			throw new AplicacaoException(ExceptionValidacoes.ERRO_SENHAS_NAO_CORRESPONDEM);
+		}
+		
+		Cartao cartao = new Cartao(form.getNumeroCartao(), form.dataValidade(), form.getCodigoSeguranca(), form.getNomeTitular(), form.getCpf());
+		cartaoRepository.save(cartao);
+		
+		Plano plano = planoRepository.findByNome(form.getNomePlano());
+		
 		Favorito favorito = new Favorito();
 		favoritoRepository.save(favorito);
-		Cartao cartao = new Cartao(form.getNumeroCartao(), form.getValidade(), form.getCodigoSeguranca(), form.getNomeTitular(), form.getCpfCnpj());
-		cartaoRepository.save(cartao);
-		Plano plano = planoRepository.findByNome(form.getNomePlano());
+		
 		Usuario usuario = form.converter();	
 		usuario.adicionarPlano(plano);		
 		usuario.setFavorito(favorito);		
 		usuario.setCartao(cartao);
 		usuarioRepository.save(usuario);
+		
 		return new UsuarioDTO(usuario);	
 	}
 }

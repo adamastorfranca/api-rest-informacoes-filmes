@@ -7,14 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import lombok.Data;
 
 @Entity
 @Data
-public class Plano implements GrantedAuthority{
-	private static final long serialVersionUID = 1L;
+public class Plano {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +20,5 @@ public class Plano implements GrantedAuthority{
 	private String descricao;
 	private String resolucao;
 	private BigDecimal valor;
-	
-	@Override
-	public String getAuthority() {
-		return this.nome;
-	}
 
 }
