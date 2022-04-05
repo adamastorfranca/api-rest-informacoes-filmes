@@ -12,7 +12,7 @@ import br.com.adamastor.uniespflix.exception.ExceptionValidacoes;
 import br.com.adamastor.uniespflix.model.dto.SerieDTO;
 import br.com.adamastor.uniespflix.model.entity.Genero;
 import br.com.adamastor.uniespflix.model.entity.Serie;
-import br.com.adamastor.uniespflix.model.form.AtualizacaoSerieForm;
+import br.com.adamastor.uniespflix.model.form.SerieAtualizacaoForm;
 import br.com.adamastor.uniespflix.model.form.SerieForm;
 import br.com.adamastor.uniespflix.model.repository.GeneroRepository;
 import br.com.adamastor.uniespflix.model.repository.SerieRepository;
@@ -74,7 +74,7 @@ public class SerieService {
 		throw new AplicacaoException(ExceptionValidacoes.ERRO_SERIE_NAO_ENCONTRADA);
 	}
 	
-	public SerieDTO atualizar(Long id, AtualizacaoSerieForm form) {
+	public SerieDTO atualizar(Long id, SerieAtualizacaoForm form) {
 		Optional<Serie> resultado = serieRepository.findById(id);
 		if(resultado.isPresent()) {
 			Serie serie = resultado.get();	

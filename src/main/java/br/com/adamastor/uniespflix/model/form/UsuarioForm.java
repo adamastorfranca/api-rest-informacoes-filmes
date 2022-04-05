@@ -28,8 +28,6 @@ public class UsuarioForm {
 	@NotEmpty @NotNull
 	private String senhaConfirmar;
 	@NotEmpty @NotNull
-	private String numeroTelefone;
-	@NotEmpty @NotNull
 	private String nomePlano;
 	@NotEmpty @NotNull
 	private String numeroCartao;
@@ -49,9 +47,13 @@ public class UsuarioForm {
 		return LocalDate.of(Integer.parseInt("20" + ano), Integer.parseInt(mes),Month.of(Integer.parseInt(mes)).maxLength());
 	}
 
-	public Usuario converter() {
-//		String senhaHash = new BCryptPasswordEncoder().encode(senha);
-		return new Usuario(nomeCompleto, LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")), email,  senha, numeroTelefone);
+	public Usuario criarUsuario() {
+		Usuario u = new Usuario();
+		u.setNomeCompleto(nomeCompleto);
+		u.setDataNascimento(LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		u.setEmail(email);
+		u.setSenha(senha);		
+		return u;
 	}
 
 }

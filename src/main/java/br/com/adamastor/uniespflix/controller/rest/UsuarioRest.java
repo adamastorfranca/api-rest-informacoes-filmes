@@ -8,14 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.adamastor.uniespflix.model.dto.UsuarioDTO;
+import br.com.adamastor.uniespflix.model.form.UsuarioAtualizacaoForm;
 import br.com.adamastor.uniespflix.model.form.UsuarioForm;
 import br.com.adamastor.uniespflix.model.service.UsuarioService;
 
@@ -40,9 +44,29 @@ public class UsuarioRest {
 		UsuarioDTO dto = usuarioService.cadastrar(form);
 		
 		if (dto == null) {
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}
+	
+	@PutMapping(value = "/atualizar", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<UsuarioDTO> autalizar(@RequestBody @Valid UsuarioAtualizacaoForm form) {
+		UsuarioDTO dto = usuarioService.atualizar(form);
+		
+		if (dto == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value = "/deletar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Void> deletar(@PathVariable Long id) {
+		boolean deletou = usuarioService.deletar(id);
+		
+		if (!deletou) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

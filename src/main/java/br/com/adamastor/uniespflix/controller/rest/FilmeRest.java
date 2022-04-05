@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.adamastor.uniespflix.model.dto.FilmeDTO;
-import br.com.adamastor.uniespflix.model.form.AtualizacaoFilmeForm;
+import br.com.adamastor.uniespflix.model.form.FilmeAtualizacaoForm;
 import br.com.adamastor.uniespflix.model.form.FilmeForm;
 import br.com.adamastor.uniespflix.model.service.FilmeService;
 
@@ -68,7 +68,7 @@ public class FilmeRest {
 	}
 	
 	@PutMapping(value = "/atualizar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<FilmeDTO> atualizar(@PathVariable Long id, @RequestBody AtualizacaoFilmeForm form) {
+	public @ResponseBody ResponseEntity<FilmeDTO> atualizar(@PathVariable Long id, @RequestBody FilmeAtualizacaoForm form) {
 		FilmeDTO dto = filmeService.atualizar(id, form);
 
 		if (dto == null) {

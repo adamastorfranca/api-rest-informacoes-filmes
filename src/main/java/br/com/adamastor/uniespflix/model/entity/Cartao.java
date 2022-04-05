@@ -6,29 +6,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
+@Table(name = "cartoes")
 @Data
 public class Cartao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String numeroCartao;
+	
 	private LocalDate validade;
+	
 	private String codigoSeguranca;
+	
 	private String nomeTitular;
+	
 	private String cpf;
-	
-	public Cartao() {}
-	
-	public Cartao(String numeroCartao, LocalDate validade, String codigoSegurancao, String nomeTitular, String cpf) {
-		this.numeroCartao = numeroCartao;
-		this.validade = validade;
-		this.codigoSeguranca = codigoSegurancao;
-		this.nomeTitular = nomeTitular;
-		this.cpf = cpf;
-	}
+
 }

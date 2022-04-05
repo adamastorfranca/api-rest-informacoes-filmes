@@ -12,44 +12,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
+@Table(name = "usuarios")
 @Data
 public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String nomeCompleto;
+	
 	private LocalDate dataNascimento;
+	
 	@Column(unique = true)
 	private String email;
+	
 	private String senha;
-	private String numeroTelefone;
+	
 	private Boolean ativo = false;
+	
 	@OneToOne
 	private Cartao cartao;	
+	
+	@OneToOne
+	private Favorito favorito = new Favorito();
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Plano> plano = new ArrayList<>();
-	@OneToOne
-	private Favorito favorito;
 	
-	
-	public Usuario() {}
-	
-	public Usuario(String nomeCompleto, LocalDate dataNascimento, String email, String senha,
-			String numeroTelefone) {
-		this.nomeCompleto = nomeCompleto;
-		this.dataNascimento = dataNascimento;
-		this.email = email;
-		this.senha = senha;
-		this.numeroTelefone = numeroTelefone;
-	}
-	
-	public void adicionarPlano(Plano plano) {
-		this.plano.add(plano);		
-	}
-
 }

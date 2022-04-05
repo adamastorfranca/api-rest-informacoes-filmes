@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.adamastor.uniespflix.model.dto.SerieDTO;
-import br.com.adamastor.uniespflix.model.form.AtualizacaoSerieForm;
+import br.com.adamastor.uniespflix.model.form.SerieAtualizacaoForm;
 import br.com.adamastor.uniespflix.model.form.SerieForm;
 import br.com.adamastor.uniespflix.model.service.SerieService;
 
@@ -68,7 +68,7 @@ public class SerieRest {
 	}
 	
 	@PutMapping(value = "/atualizar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<SerieDTO> atualizar(@PathVariable Long id, @RequestBody AtualizacaoSerieForm form) {
+	public @ResponseBody ResponseEntity<SerieDTO> atualizar(@PathVariable Long id, @RequestBody SerieAtualizacaoForm form) {
 		SerieDTO dto = serieService.atualizar(id, form);
 
 		if (dto == null) {

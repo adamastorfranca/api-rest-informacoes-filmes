@@ -4,7 +4,7 @@ import br.com.adamastor.uniespflix.model.entity.Genero;
 import lombok.Data;
 
 @Data
-public class AtualizacaoGeneroForm {
+public class GeneroAtualizacaoForm {
 
 	private String nomeGenero;
 	

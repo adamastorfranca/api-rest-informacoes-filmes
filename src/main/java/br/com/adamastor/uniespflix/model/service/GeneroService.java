@@ -10,7 +10,7 @@ import br.com.adamastor.uniespflix.exception.AplicacaoException;
 import br.com.adamastor.uniespflix.exception.ExceptionValidacoes;
 import br.com.adamastor.uniespflix.model.dto.GeneroDTO;
 import br.com.adamastor.uniespflix.model.entity.Genero;
-import br.com.adamastor.uniespflix.model.form.AtualizacaoGeneroForm;
+import br.com.adamastor.uniespflix.model.form.GeneroAtualizacaoForm;
 import br.com.adamastor.uniespflix.model.form.GeneroForm;
 import br.com.adamastor.uniespflix.model.repository.GeneroRepository;
 
@@ -57,7 +57,7 @@ public class GeneroService {
 		throw new AplicacaoException(ExceptionValidacoes.ERRO_GENERO_NAO_ENCONTRADO);
 	}
 	
-	public GeneroDTO atualizar(Long id, AtualizacaoGeneroForm form) {
+	public GeneroDTO atualizar(Long id, GeneroAtualizacaoForm form) {
 		Optional<Genero> resultado = generoRepository.findById(id);
 		if(resultado.isPresent()) {
 			Genero genero = resultado.get();	
