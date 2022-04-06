@@ -1,0 +1,14 @@
+.container {
+  margin-top: 100px;
+  max-width: 1000px;
+}
+h2 {
+  font-weight: bold;
+}
+label
+{
+  color: white;
+}
+#botao_cadastrar{
+  text-align: center;
+}
