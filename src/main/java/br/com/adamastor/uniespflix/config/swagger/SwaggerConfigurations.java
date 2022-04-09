@@ -1,4 +1,4 @@
-package br.com.adamastor.uniespflix.controller.swagger;
+package br.com.adamastor.uniespflix.config.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

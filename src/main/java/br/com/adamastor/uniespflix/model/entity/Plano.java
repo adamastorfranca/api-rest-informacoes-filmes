@@ -6,23 +6,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
 
 import lombok.Data;
 
 @Entity
-@Table(name = "planos")
 @Data
-public class Plano {
+public class Plano implements GrantedAuthority{
+
+	private static final long serialVersionUID = 22755313226487489L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String nome;
-	
 	private String descricao;
-	
+	private String resolucao;
 	private BigDecimal valor;
+	
+	@Override
+	public String getAuthority() {
+		return this.nome;
+	}
 
 }

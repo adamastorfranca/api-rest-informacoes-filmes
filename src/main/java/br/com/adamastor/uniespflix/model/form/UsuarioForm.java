@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.adamastor.uniespflix.model.entity.Usuario;
 import lombok.Data;
@@ -27,6 +28,8 @@ public class UsuarioForm {
 	private String senha;
 	@NotEmpty @NotNull
 	private String senhaConfirmar;
+	@NotEmpty @NotNull
+	private String numeroTelefone;
 	@NotEmpty @NotNull
 	private String nomePlano;
 	@NotEmpty @NotNull
@@ -47,13 +50,9 @@ public class UsuarioForm {
 		return LocalDate.of(Integer.parseInt("20" + ano), Integer.parseInt(mes),Month.of(Integer.parseInt(mes)).maxLength());
 	}
 
-	public Usuario criarUsuario() {
-		Usuario u = new Usuario();
-		u.setNomeCompleto(nomeCompleto);
-		u.setDataNascimento(LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		u.setEmail(email);
-		u.setSenha(senha);		
-		return u;
+	public Usuario converter() {
+		String senhaHash = new BCryptPasswordEncoder().encode(senha);
+		return new Usuario(nomeCompleto, LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")), email,  senhaHash, numeroTelefone);
 	}
 
 }
