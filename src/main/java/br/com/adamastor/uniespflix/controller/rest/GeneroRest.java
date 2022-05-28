@@ -31,7 +31,7 @@ public class GeneroRest {
 	private GeneroService generoService;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<List<GeneroDTO>> listarTodosGeneros()){
+	public @ResponseBody ResponseEntity<List<GeneroDTO>> listarTodosGeneros(){
 		List<GeneroDTO> dto = generoService.buscarTodosGeneros();
 		if (dto == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

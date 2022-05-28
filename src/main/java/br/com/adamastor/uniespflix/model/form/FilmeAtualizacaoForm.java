@@ -7,12 +7,19 @@ import lombok.Data;
 public class FilmeAtualizacaoForm {
 
 	private String titulo;
+	
 	private String nomeGenero;
+	
 	private Integer anoLancamento;
+	
 	private Integer duracaoMinutos;
+	
 	private String sinopse;
+	
 	private Integer relevancia;
+	
 	private String urlTrailler;	
+	
 	
 	public Filme atualizarDados(Filme filme) {
 		if(!titulo.isEmpty()) {
@@ -26,9 +33,6 @@ public class FilmeAtualizacaoForm {
 		}
 		if(sinopse.isEmpty()) {
 			filme.setSinopse(sinopse);
-		}
-		if(relevancia != null || (relevancia >= 0 && relevancia <= 100)) {
-			filme.setRelevancia(relevancia);
 		}
 		if(!urlTrailler.isEmpty()) {
 			filme.setUrlTrailler(urlTrailler);

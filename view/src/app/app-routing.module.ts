@@ -4,8 +4,9 @@ import { CadastroComponent } from './pages/usuarios/cadastro/cadastro.component'
 import { InicioComponent } from './pages/inicio/inicio.component';
 
 const routes: Routes = [
-  { path: 'cadastro', component: CadastroComponent },
-  { path: 'inicio', component: InicioComponent }
+  { path: '', component: InicioComponent },
+  { path: 'cadastro', component: CadastroComponent }
+
 ];
 
 @NgModule({

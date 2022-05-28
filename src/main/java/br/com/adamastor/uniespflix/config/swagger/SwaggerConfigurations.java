@@ -15,7 +15,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 public class SwaggerConfigurations {
 
 	@Bean
-	public Docket forumApi() {
+	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
 				.paths(PathSelectors.any())
