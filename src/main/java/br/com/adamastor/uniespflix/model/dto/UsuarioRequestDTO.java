@@ -6,9 +6,6 @@ import java.time.Month;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.com.adamastor.uniespflix.exception.AplicacaoException;
-import br.com.adamastor.uniespflix.exception.ExceptionValidacoes;
-import br.com.adamastor.uniespflix.model.entity.Cartao;
 import br.com.adamastor.uniespflix.model.entity.Usuario;
 import lombok.Data;
 
@@ -19,17 +16,15 @@ public class UsuarioRequestDTO implements Serializable {
 
 	private String nomeCompleto;
 	
-	private String dataNascimento;
+	private LocalDate dataNascimento;
 	
 	private String email;
 	
 	private String senha;
 	
 	private String senhaConfirmar;
-	
-	private String numeroTelefone;
-	
-	private String nomePlano; // FALTA
+
+	private Long idPlano;
 	
 	private String numeroCartao;
 	
@@ -39,34 +34,21 @@ public class UsuarioRequestDTO implements Serializable {
 	
 	private String nomeTitular;
 	
-	private String cpf;		
+	private String cpf;
+	
+	private String modalidade;
 
 
 	public Usuario toUsuario() {
 		Usuario u = new Usuario();
-		u.setNomeCompleto(nomeCompleto);
-		u.setDataNascimento(LocalDate.parse(dataNascimento));
+		u.setNomeCompleto(nomeCompleto.toUpperCase());
+		u.setDataNascimento(dataNascimento);
 		u.setEmail(email);
-		if(senha.equals(senhaConfirmar)) {
-			throw new AplicacaoException(ExceptionValidacoes.ERRO_SENHAS_NAO_CORRESPONDEM);
-		}
 		String senhaHash = new BCryptPasswordEncoder().encode(senha);
 		u.setSenha(senhaHash);
-		u.setNumeroTelefone(numeroCartao);
 		u.setAtivo(true);
 
 		return u;
-	}
-	
-	public Cartao toCartao() {
-		Cartao c = new Cartao();
-		c.setNumeroCartao(numeroCartao);
-		c.setValidade(dataValidade());
-		c.setCodigoSeguranca(codigoSeguranca);
-		c.setNomeTitular(nomeTitular);
-		c.setCpf(cpf);
-		
-		return c;
 	}
 	
 	public LocalDate dataValidade() {

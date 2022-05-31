@@ -1,0 +1,26 @@
+.container-fluid {
+  max-width: 100%;
+}
+
+#fundo {
+  position: absolute;
+  opacity: 0.2;
+  min-height: 80%;
+}
+
+#entrar {
+  background-color: red;
+  font-weight: bold;
+  margin-right: 20px;
+  color: white;
+}
+
+#logo {
+  font-size: 35px;
+  color: rgb(255, 0, 0);
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+
+

@@ -1,0 +1,34 @@
+<div class="container">
+  <h1>Entrar</h1>
+
+  <form [formGroup]="formLogin" (ngSubmit)="verificarAutenticacao()">
+    <div>
+      <input type="email" class="form-control" formControlName="email" placeholder="E-mail">
+      <div *ngIf="
+        formLogin.get('email')?.errors?.['required'] &&
+        formLogin.get('email')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div>
+      <input type="password" class="form-control" formControlName="senha" placeholder="Senha">
+      <div *ngIf="
+        formLogin.get('senha')?.errors?.['required'] &&
+        formLogin.get('senha')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div id="botao-entrar">
+      <button type="submit" class="btn btn-danger w-100" [disabled]="formLogin.invalid">Entrar</button>
+    </div>
+  </form>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox">
+    <label class="form-check-label">Lembre-se de mim</label>
+  </div>
+
+  <p class="text-aling-center">Novo por aqui? <a type="button" routerLink="/cadastro">Assine agora.</a></p>
+</div>

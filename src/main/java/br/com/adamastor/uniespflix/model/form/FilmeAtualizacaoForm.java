@@ -20,23 +20,16 @@ public class FilmeAtualizacaoForm {
 	
 	private String urlTrailler;	
 	
+	private String urlImagem;
+	
 	
 	public Filme atualizarDados(Filme filme) {
-		if(!titulo.isEmpty()) {
-			filme.setTitulo(titulo);
-		}
-		if(anoLancamento != null || (anoLancamento >= 1900 && anoLancamento <= 2022)) {
-			filme.setAnoLancamento(anoLancamento);
-		}
-		if(duracaoMinutos != null || (duracaoMinutos >= 30 && duracaoMinutos <= 180)) {
-			filme.setDuracaoMinutos(duracaoMinutos);
-		}
-		if(sinopse.isEmpty()) {
-			filme.setSinopse(sinopse);
-		}
-		if(!urlTrailler.isEmpty()) {
-			filme.setUrlTrailler(urlTrailler);
-		}
+		filme.setTitulo(titulo);
+		filme.setAnoLancamento(anoLancamento);
+		filme.setDuracaoMinutos(duracaoMinutos);
+		filme.setSinopse(sinopse);
+		filme.setUrlTrailler(urlTrailler);
+		filme.setUrlImagem(urlImagem);
 		return filme;
 	}
 

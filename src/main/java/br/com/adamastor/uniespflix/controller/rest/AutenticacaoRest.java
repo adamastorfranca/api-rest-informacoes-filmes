@@ -1,7 +1,5 @@
 package br.com.adamastor.uniespflix.controller.rest;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.adamastor.uniespflix.config.security.TokenService;
+import br.com.adamastor.uniespflix.model.dto.LoginDTO;
 import br.com.adamastor.uniespflix.model.dto.TokenDTO;
-import br.com.adamastor.uniespflix.model.form.LoginForm;
 
 @RestController
 @RequestMapping("/auth")
@@ -27,7 +25,7 @@ public class AutenticacaoRest {
 	private TokenService tokenService;
 	
 	@PostMapping
-	public ResponseEntity<TokenDTO> autenticar(@RequestBody @Valid LoginForm form){
+	public ResponseEntity<TokenDTO> autenticar(@RequestBody LoginDTO form){
 		UsernamePasswordAuthenticationToken dadosLogin = form.converter();
 		
 		try {

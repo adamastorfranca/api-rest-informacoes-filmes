@@ -34,8 +34,11 @@ public class Filme implements Serializable {
 	@Column(name = "NU_DURACAO", nullable = false)
 	private Integer duracaoMinutos;
 	
-	@Column(name = "DS_SINOPSE", nullable = false)
+	@Column(name = "DS_SINOPSE", nullable = false, length = 2000)
 	private String sinopse;
+	
+	@Column(name = "DS_URL_IMAGEM", nullable = false)
+	private String urlImagem;	
 
 	@Column(name = "DS_URL_TRAILLER", nullable = false)
 	private String urlTrailler;	

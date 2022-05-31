@@ -38,8 +38,11 @@ public class Cartao implements Serializable {
 	@Column(name = "DS_NOME_TITULAR", nullable = false)
 	private String nomeTitular;
 	
+	@Column(name = "DS_MODALIDADE", nullable = false)
+	private String modalidade;
+	
 	@CPF
 	@Column(name = "NU_CPF", nullable = false, length = 11)
 	private String cpf;
-
+	
 }

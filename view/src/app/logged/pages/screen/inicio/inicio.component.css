@@ -1,0 +1,24 @@
+.container-fluid {
+  width: 95%;
+  margin-bottom: 60px;
+}
+
+#generos {
+  margin-bottom: 30px;
+  height: 280px;
+}
+
+#nome-genero {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+img {
+  max-width: 180px;
+  position: relative;
+}
+
+img:hover {
+  max-width: 220px;
+}

@@ -1,0 +1,9 @@
+<div class="container-fluid">
+  <div class="row" id="generos" *ngFor="let genero of generos">
+    <p id="nome-genero">{{ genero.nome }}</p>
+    <div class="col-auto align-self-start" *ngFor="let filme of filmes">
+        <a type="button" [routerLink]="['filmes', filme.id]"><img type="button" *ngIf="filme.idGenero === genero.id" [src]="filme.urlImagem" ></a>
+    </div>
+</div>
+
+

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" id="logo" routerLink="/admin" routerLinkActive="active"><strong>UNIESPFLIX</strong></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" id="inicio" routerLink="/admin">Início</a>
+          </li>
+          <li>
+            <div class="dropdown">
+              <button class="btn btn-dark dropdown-toggle" style="background-color: black;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Filmes
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" routerLink="filmes/cadastrar">Cadastrar</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <div class="collapse navbar-collapse justify-content-end">
+          <ul>
+              <a class="btn mt-4" id="sair" routerLink="" role="button">Sair</a>
+          </ul>
+        </div>
+      </div>
+  </nav>
+</div>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

@@ -1,26 +1,24 @@
-package br.com.adamastor.uniespflix.model.form;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+package br.com.adamastor.uniespflix.model.dto;
 
 import br.com.adamastor.uniespflix.model.entity.Filme;
 import lombok.Data;
 
 @Data
-public class FilmeForm {
+public class FilmeRequestDTO {
 	
-	@NotEmpty @NotNull
 	private String titulo;
-	@NotEmpty @NotNull
+
 	private Integer anoLancamento;
-	@NotEmpty @NotNull
+
 	private Integer duracaoMinutos;
-	@NotEmpty @NotNull
+
 	private String sinopse;
-	@NotEmpty @NotNull
+	
+	private String urlImagem;
+
 	private String urlTrailler;
-	@NotEmpty @NotNull
-	private String nomeGenero;
+
+	private Long idGenero;
 
 	public Filme converter() {
 		Filme filme = new Filme();
@@ -28,7 +26,9 @@ public class FilmeForm {
 		filme.setAnoLancamento(anoLancamento);
 		filme.setDuracaoMinutos(duracaoMinutos);
 		filme.setSinopse(sinopse);
+		filme.setUrlImagem(urlImagem);
 		filme.setUrlTrailler(urlTrailler);
+		
 		return filme;
 	}
 }

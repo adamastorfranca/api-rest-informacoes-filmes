@@ -1,0 +1,145 @@
+<div class="container">
+  <h1 class="text-center">Cadastro</h1>
+  <form class="row g-3" [formGroup]="formCadastro" (ngSubmit)="realizarCadastro()">
+
+    <div class="col-md-6">
+      <h2>Dados pessoais</h2>
+    </div>
+    <div class="col-md-6">
+      <h2>Dados de pagamento</h2>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="nomeCompleto">Nome completo</label>
+      <input type="text" class="form-control" formControlName="nomeCompleto">
+      <div *ngIf="
+        formCadastro.get('nomeCompleto')?.errors?.['required'] &&
+        formCadastro.get('nomeCompleto')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="numeroCartao">Número do cartão</label>
+      <input type="text" class="form-control" formControlName="numeroCartao">
+      <div *ngIf="
+        formCadastro.get('numeroCartao')?.errors?.['required'] &&
+        formCadastro.get('numeroCartao')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="dataNascimento">Data nascimento</label>
+      <input type="date" class="form-control" placeholder="DD/MM/AAAA"  formControlName="dataNascimento">
+      <div *ngIf="
+        formCadastro.get('dataNascimento')?.errors?.['required'] &&
+        formCadastro.get('dataNascimento')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="nomeTitular">Nome do titular</label>
+      <input type="text" class="form-control" formControlName="nomeTitular">
+      <div *ngIf="
+        formCadastro.get('nomeTitular')?.errors?.['required'] &&
+        formCadastro.get('nomeTitular')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="email">E-mail</label>
+      <input type="email" class="form-control" formControlName="email">
+      <div *ngIf="
+        formCadastro.get('email')?.errors?.['required'] &&
+        formCadastro.get('email')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="cpf">CPF</label>
+      <input type="text" class="form-control" formControlName="cpf">
+      <div *ngIf="
+        formCadastro.get('cpf')?.errors?.['required'] &&
+        formCadastro.get('cpf')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="senha">Senha</label>
+      <input type="password" class="form-control" formControlName="senha">
+      <div *ngIf="
+        formCadastro.get('senha')?.errors?.['required'] &&
+        formCadastro.get('senha')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="validade">Validade</label>
+      <input type="text" class="form-control" placeholder="MM/AA" formControlName="validade">
+      <div *ngIf="
+        formCadastro.get('validade')?.errors?.['required'] &&
+        formCadastro.get('validade')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="senhaConfirmar" class="form-label">Confirmar senha</label>
+      <input type="password" class="form-control" id="senhaConfirmar" formControlName="senhaConfirmar">
+      <div *ngIf="
+        formCadastro.get('senhaConfirmar')?.errors?.['required'] &&
+        formCadastro.get('senhaConfirmar')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="codigoSeguranca" class="form-label">Código de segurança</label>
+      <input type="number" class="form-control" formControlName="codigoSeguranca">
+      <div *ngIf="
+        formCadastro.get('codigoSeguranca')?.errors?.['required'] &&
+        formCadastro.get('codigoSeguranca')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="idPlano">Plano</label>
+      <select class="form-select" aria-label="Default select example"  formControlName="idPlano">
+        <option value="" hidden>Escolha seu plano</option>
+        <option value="1">BÁSICO  (Resolução 480p)  - R$ 25,90</option>
+        <option value="2">PADRÃO  (Resolução 1080p) - R$ 39,90</option>
+        <option value="3">PREMIUM (Resolução 4K)    - R$ 55,90</option>
+      </select>
+      <div *ngIf="
+        formCadastro.get('idPlano')?.errors?.['required'] &&
+        formCadastro.get('idPlano')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="modalidade">Modalidade</label>
+      <select class="form-select" aria-label="Default select example" formControlName="modalidade">
+        <option value="" hidden>Escolha a modalidade</option>
+        <option value="CRÉDITO">CRÉDITO</option>
+        <option value="DÉBITO">DÉBITO</option>
+      </select>
+      <div *ngIf="
+        formCadastro.get('modalidade')?.errors?.['required'] &&
+        formCadastro.get('modalidade')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="col-md-12 mt-5"  id="botao-cadastrar">
+      <button type="submit" class="btn btn-danger" [disabled]="formCadastro.invalid">Cadastrar</button>
+    </div>
+  </form>
+</div>

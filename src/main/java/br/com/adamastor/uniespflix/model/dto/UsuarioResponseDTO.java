@@ -20,9 +20,7 @@ public class UsuarioResponseDTO implements Serializable {
 	private LocalDate dataNascimento;
 	
 	private String email;
-	
-	private String numeroTelefone;
-	
+
 	private String nomePlano;
 	
 	private boolean ativo;
@@ -33,7 +31,6 @@ public class UsuarioResponseDTO implements Serializable {
 		this.nomeCompleto = usuario.getNomeCompleto();
 		this.dataNascimento = usuario.getDataNascimento();
 		this.email = usuario.getEmail();
-		this.numeroTelefone = usuario.getNumeroTelefone();
 		this.nomePlano = usuario.getPlano().get(0).getNome();
 		this.ativo = usuario.isAtivo();
 	}

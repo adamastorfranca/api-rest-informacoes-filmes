@@ -27,9 +27,6 @@ public class SerieAtualizacaoForm {
 		if(sinopse.isEmpty()) {
 			serie.setSinopse(sinopse);
 		}
-		if(relevancia != null || (relevancia >= 0 && relevancia <= 100)) {
-			serie.setRelevancia(relevancia);
-		}
 		if(!urlTrailler.isEmpty()) {
 			serie.setUrlTrailler(urlTrailler);
 		}

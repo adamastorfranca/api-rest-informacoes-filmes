@@ -42,11 +42,8 @@ public class Usuario implements UserDetails{
 	@Column(name = "DS_EMAIL", nullable = false, unique = true)
 	private String email;
 	
-	@Column(name = "SENHA", nullable = false, length = 8)
+	@Column(name = "SENHA", nullable = false)
 	private String senha;
-	
-	@Column(name = "NU_TELEFONE")
-	private String numeroTelefone;
 	
 	@Column(name = "BL_ATIVO")
 	private boolean ativo;

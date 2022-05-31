@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.adamastor.uniespflix.model.dto.GeneroDTO;
+import br.com.adamastor.uniespflix.model.dto.GeneroResponseDTO;
+import br.com.adamastor.uniespflix.model.entity.Genero;
 import br.com.adamastor.uniespflix.model.form.GeneroAtualizacaoForm;
 import br.com.adamastor.uniespflix.model.form.GeneroForm;
 import br.com.adamastor.uniespflix.model.service.GeneroService;
@@ -28,38 +30,20 @@ import br.com.adamastor.uniespflix.model.service.GeneroService;
 public class GeneroRest {
 	
 	@Autowired
-	private GeneroService generoService;
+	private GeneroService service;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<List<GeneroDTO>> listarTodosGeneros(){
-		List<GeneroDTO> dto = generoService.buscarTodosGeneros();
-		if (dto == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<>(dto, HttpStatus.OK);
+	public @ResponseBody ResponseEntity<List<GeneroResponseDTO>> buscar(
+			@RequestParam(value = "id", required = false) Long id,
+			@RequestParam(value = "nome", required = false) String nome) {
+		List<Genero> resultado = service.buscar(id, nome);
+
+		return new ResponseEntity<>(GeneroResponseDTO.converter(resultado), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/buscarPorTitulo/{nome}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<List<GeneroDTO>> buscarSeriePorNome(@PathVariable String nome){
-		List<GeneroDTO> dto = generoService.buscarPorNome(nome);
-		if (dto == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<>(dto, HttpStatus.OK);
-	}
-	
-	@GetMapping(value = "/buscarPorId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<GeneroDTO> buscarPorId(@PathVariable Long id){
-		GeneroDTO dto = generoService.buscarPorId(id);
-		if (dto == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<>(dto, HttpStatus.OK);
-	}
-	
-	@PostMapping(value = "/cadastrar", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<GeneroDTO> cadastrar(@RequestBody @Valid GeneroForm form) {
-		GeneroDTO dto = generoService.cadastrar(form);
+	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<GeneroResponseDTO> cadastrar(@RequestBody @Valid GeneroForm form) {
+		GeneroResponseDTO dto = service.cadastrar(form);
 		
 		if (dto == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -67,21 +51,16 @@ public class GeneroRest {
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 	
-	@PutMapping(value = "/atualizar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<GeneroDTO> atualizar(@PathVariable Long id, @RequestBody GeneroAtualizacaoForm form) {
-		GeneroDTO dto = generoService.atualizar(id, form);
+	@PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<GeneroResponseDTO> atualizar(@PathVariable Long id, @RequestBody GeneroAtualizacaoForm form) {
+		GeneroResponseDTO dto = service.atualizar(id, form);
 
-		if (dto == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/deletar/{id}")
+	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable Long id) {
-		if (!generoService.deletar(id)) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+
 		return new ResponseEntity<>(HttpStatus.OK);	
 	}
 

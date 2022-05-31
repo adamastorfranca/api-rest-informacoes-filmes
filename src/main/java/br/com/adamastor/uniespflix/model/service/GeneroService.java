@@ -1,14 +1,23 @@
 package br.com.adamastor.uniespflix.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import br.com.adamastor.uniespflix.exception.AplicacaoException;
 import br.com.adamastor.uniespflix.exception.ExceptionValidacoes;
-import br.com.adamastor.uniespflix.model.dto.GeneroDTO;
+import br.com.adamastor.uniespflix.model.dto.GeneroResponseDTO;
 import br.com.adamastor.uniespflix.model.entity.Genero;
 import br.com.adamastor.uniespflix.model.form.GeneroAtualizacaoForm;
 import br.com.adamastor.uniespflix.model.form.GeneroForm;
@@ -18,51 +27,53 @@ import br.com.adamastor.uniespflix.model.repository.GeneroRepository;
 public class GeneroService {
 	
 	@Autowired
-	private GeneroRepository generoRepository;
-	
-	public List<GeneroDTO> buscarTodosGeneros(){
-		List<Genero> generos = generoRepository.findAll();
-		return GeneroDTO.converter(generos);
-	}
-	
-	public List<GeneroDTO> buscarPorNome(String nome){
-		List<Genero> generos = generoRepository.findByNomeContains(nome);
-		if (generos.isEmpty()) {
-			throw new AplicacaoException(ExceptionValidacoes.ERRO_GENERO_NAO_ENCONTRADO);
-		}		
-		return GeneroDTO.converter(generos);
-	}
-	
-	public GeneroDTO buscarPorId(Long id){
-		Optional<Genero> resultado = generoRepository.findById(id);
-		if(resultado.isPresent()) {
-			return new GeneroDTO(resultado.get());
+	private GeneroRepository repository;
+	@Autowired
+	private EntityManager em;
+
+	public List<Genero> buscar(Long id, String nome) {	
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Genero> cq = cb.createQuery(Genero.class);
+
+        Root<Genero> genero = cq.from(Genero.class);
+        Predicate idPredicate = cb.equal(genero.get("id"), id);
+        Predicate nomePredicate = cb.like(genero.get("nome"), "%" + nome + "%");
+        
+        List<Predicate> predicates = new ArrayList<>();
+        if (!ObjectUtils.isEmpty(id)) {
+        	predicates.add(idPredicate);
 		}
-		throw new AplicacaoException(ExceptionValidacoes.ERRO_GENERO_NAO_ENCONTRADO);
+        if (!ObjectUtils.isEmpty(nome)) {
+        	predicates.add(nomePredicate);
+		}
+        
+		cq.where(predicates.stream().toArray(Predicate[]::new));
+        TypedQuery<Genero> query = em.createQuery(cq);
+        return query.getResultList();
 	}
-	
-	public GeneroDTO cadastrar(GeneroForm form) {
+
+	public GeneroResponseDTO cadastrar(GeneroForm form) {
 		Genero genero = form.converter();	
-		generoRepository.save(genero);	
-		return new GeneroDTO(genero);
+		repository.save(genero);	
+		return new GeneroResponseDTO(genero);
 	}
 	
 	public boolean deletar(Long id) {
-		Optional<Genero> resultado = generoRepository.findById(id);
+		Optional<Genero> resultado = repository.findById(id);
 		if(resultado.isPresent()) {
 			Genero genero = resultado.get();
-			generoRepository.delete(genero);
+			repository.delete(genero);
 			return resultado.isPresent();
 		}
 		throw new AplicacaoException(ExceptionValidacoes.ERRO_GENERO_NAO_ENCONTRADO);
 	}
 	
-	public GeneroDTO atualizar(Long id, GeneroAtualizacaoForm form) {
-		Optional<Genero> resultado = generoRepository.findById(id);
+	public GeneroResponseDTO atualizar(Long id, GeneroAtualizacaoForm form) {
+		Optional<Genero> resultado = repository.findById(id);
 		if(resultado.isPresent()) {
 			Genero genero = resultado.get();	
-			generoRepository.save(form.atualizarDados(genero));
-			return new GeneroDTO(genero);
+			repository.save(form.atualizarDados(genero));
+			return new GeneroResponseDTO(genero);
 		}
 		throw new AplicacaoException(ExceptionValidacoes.ERRO_GENERO_NAO_ENCONTRADO);
 	}

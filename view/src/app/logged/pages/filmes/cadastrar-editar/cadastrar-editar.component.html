@@ -1,0 +1,83 @@
+<div class="container">
+  <h3 class="text-center">{{ estaEditando() ? "Edicão" : "Cadastro" }} de filme</h3>
+  <form [formGroup]="formulario" (ngSubmit)="enviar()">
+
+    <fieldset>
+      <label class="form-label" for="titulo">Título</label>
+      <input type="text" class="form-control" formControlName="titulo">
+      <div *ngIf="
+        formulario.get('titulo')?.errors?.['required'] &&
+        formulario.get('titulo')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <label class="form-label" for="anoLancamento">Ano de lançamento</label>
+      <input type="number" class="form-control" formControlName="anoLancamento">
+      <div *ngIf="
+        formulario.get('anoLancamento')?.errors?.['required'] &&
+        formulario.get('anoLancamento')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <label class="form-label" for="duracaoMinutos">Duração em minutos</label>
+      <input type="number" class="form-control" formControlName="duracaoMinutos">
+      <div *ngIf="
+        formulario.get('duracaoMinutos')?.errors?.['required'] &&
+        formulario.get('duracaoMinutos')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <label class="form-label" for="sinopse">Sinopse</label>
+      <textarea type="text" class="form-control" formControlName="sinopse"></textarea>
+      <div *ngIf="
+        formulario.get('sinopse')?.errors?.['required'] &&
+        formulario.get('sinopse')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <label class="form-label" for="urlImagem">Imagem</label>
+      <input type="text" class="form-control" formControlName="urlImagem">
+      <div *ngIf="
+        formulario.get('urlImagem')?.errors?.['required'] &&
+        formulario.get('urlImagem')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <label class="form-label" for="urlTrailler">URL Trailler</label>
+      <input type="text" class="form-control" formControlName="urlTrailler">
+      <div *ngIf="
+        formulario.get('urlTrailler')?.errors?.['required'] &&
+        formulario.get('urlTrailler')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <label class="form-label" for="idGenero">Gênero</label>
+      <select class="form-select" formControlName="idGenero">
+        <option value="" hidden>Selecione o gênero</option>
+        <option *ngFor="let genero of generos" [value]="genero.id" required>{{ genero.nome }}</option>
+      </select>
+      <div *ngIf="
+        formulario.get('idGenero')?.errors?.['required'] &&
+        formulario.get('idGenero')?.touched" class="form-text text-danger">
+        Campo obrigatório
+      </div>
+    </fieldset>
+
+    <div id="botao-entrar">
+      <button type="submit" class="btn btn-danger w-100" [disabled]="formulario.invalid">{{ estaEditando() ? "Editar" : "Cadastrar" }}</button>
+    </div>
+  </form>
+
+</div>

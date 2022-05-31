@@ -22,8 +22,8 @@ public class PlanoService {
 		return PlanoDTO.converter(planos);
 	}
 	
-	public Plano buscarPlanoPorNome(String nome) {
-		Optional<Plano> resultado = planoRepository.findByNomeContains(nome);
+	public Plano buscarPorId(Long id) {
+		Optional<Plano> resultado = planoRepository.findById(id);
 		if(resultado.isPresent()) {
 			return resultado.get();
 		}

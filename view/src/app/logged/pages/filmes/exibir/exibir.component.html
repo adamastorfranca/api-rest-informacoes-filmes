@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>{{ filme.titulo }}</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <img [src]="filme.urlImagem">
+    </div>
+    <div class="col-8">
+      <p>Ano lançamento: {{ filme.anoLancamento }}</p>
+      <p>Duração: {{ filme.duracaoMinutos }} min.</p>
+      <p>Gênero: {{ filme.nomeGenero }}</p>
+      <p>Sinopse: {{ filme.sinopse }}</p>
+      <a class="btn btn-danger" type="button" [routerLink]="['/admin/filmes/editar', filme.id]">Editar</a>
+      <a class="btn btn-danger" id="excluir" type="button" (click)="deletar(filme.id)">Excluir</a>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col" >
+      <p id="trailler">Trailler</p>
+      <iframe width="1020" height="630" [src]="filme.urlTrailler | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,21 @@
+.container {
+  height: 800px;
+  width: 500px;
+  margin-top: 40px;
+}
+
+h3 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+label {
+  margin-top: 10px;
+  color: white;
+}
+
+button {
+  margin: 40px 0;
+  font-weight: bold;
+}

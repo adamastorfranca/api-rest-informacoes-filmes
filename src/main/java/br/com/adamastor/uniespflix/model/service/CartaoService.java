@@ -14,13 +14,14 @@ public class CartaoService {
 	@Autowired
 	private CartaoRepository cartaoRepository;
 	
-	public Cartao cadastrar(String numeroCartao, LocalDate validade, String codigoSeguranca, String nomeTitular, String cpf) {
+	public Cartao cadastrar(String numeroCartao, LocalDate validade, String codigoSeguranca, String nomeTitular, String cpf, String modalidade) {
 		Cartao c = new Cartao();
 		c.setNumeroCartao(numeroCartao);
 		c.setValidade(validade);
 		c.setCodigoSeguranca(codigoSeguranca);
-		c.setNomeTitular(nomeTitular);
+		c.setNomeTitular(nomeTitular.toUpperCase());
 		c.setCpf(cpf);
+		c.setModalidade(modalidade);
 		
 		cartaoRepository.save(c);
 		
