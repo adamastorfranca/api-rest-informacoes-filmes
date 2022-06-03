@@ -45,7 +45,7 @@ public class UsuarioService {
 
         Root<Usuario> usuario = cq.from(Usuario.class);
         Predicate idPredicate = cb.equal(usuario.get("id"), id);
-        Predicate nomePredicate = cb.like(usuario.get("nome"), "%" + nome + "%");
+        Predicate nomePredicate = cb.like(usuario.get("nomeCompleto"), "%" + nome + "%");
         Predicate emailPredicate = cb.equal(usuario.get("email"), email);
         
         List<Predicate> predicates = new ArrayList<>();

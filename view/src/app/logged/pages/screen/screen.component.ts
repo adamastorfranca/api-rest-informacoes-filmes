@@ -16,6 +16,6 @@ export class ScreenComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.usuarioLogado = this.authService.usuarioLogado.nomeCompleto.split(' ')[0];
   }
 }

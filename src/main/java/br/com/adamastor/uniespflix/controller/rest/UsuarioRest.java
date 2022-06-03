@@ -36,7 +36,7 @@ public class UsuarioRest {
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<List<UsuarioResponseDTO>> buscar(
 			@RequestParam(value = "id", required = false) Long id,
-			@RequestParam(value = "nome", required = false) String nome,
+			@RequestParam(value = "nomeCompleto", required = false) String nome,
 			@RequestParam(value = "email", required = false) String email) {
 		List<Usuario> resultado = service.buscar(id, nome, email);
 
